@@ -466,15 +466,15 @@ const BossLevelFive = {
            "          "]
 }
 let currentLevel = undefined
-// const levels = [
-// LevelOne,LevelTwo,LevelThree,LevelFour,LevelFive,BossLevelOne,
-// LevelSix,LevelSeven,LevelEight,LevelNine,LevelTen,BossLevelTwo,
-// LevelEleven,LevelTwelve,LevelThirteen,LevelFourteen,LevelFifthteen,BossLevelThree,
-// LevelSixteen,LevelSeventeen,LevelEighteen,LevelNineteen,LevelTwenty,BossLevelFour,
-// LevelTwentyOne,LevelTwentyTwo,LevelTwentyThree,LevelTwentyFour,BossLevelFive
-// ]
+const levels = [
+LevelOne,LevelTwo,LevelThree,LevelFour,LevelFive,BossLevelOne,
+LevelSix,LevelSeven,LevelEight,LevelNine,LevelTen,BossLevelTwo,
+LevelEleven,LevelTwelve,LevelThirteen,LevelFourteen,LevelFifthteen,BossLevelThree,
+LevelSixteen,LevelSeventeen,LevelEighteen,LevelNineteen,LevelTwenty,BossLevelFour,
+LevelTwentyOne,LevelTwentyTwo,LevelTwentyThree,LevelTwentyFour,BossLevelFive
+]
 // const levels = [Test]
-const levels = [LevelOne,LevelTwo]
+// const levels = [LevelOne,LevelTwo]
 // Setups
 const player = {
     x: 10,
@@ -2007,14 +2007,17 @@ let save = {
     completedSave: false,
 }
 function saveGame(){
+    console.log("Saving Game")
     save.level = currentLevel
     save.playerInventory = player.inventory
     save.MaxHealth = player.maxhp
     let JSONSave = JSON.stringify(save)
     // console.log("Save:" + save)
     window.localStorage.setItem("save",JSONSave)
+    console.log("Game Saved")
 }
 function loadSave(){
+    console.log("Save Loading")
     let localSave = localStorage.getItem("save");
     localSave = JSON.parse(localSave);
     save = localSave
@@ -2024,6 +2027,7 @@ function loadSave(){
     player.inventory = save.playerInventory
     player.maxhp = save.playerMaxHealth
     levelInterpret(save.level);
+    console.log("Save loaded")
 }
 function checkIfCompleted(){
     let localSave = localStorage.getItem("save");
